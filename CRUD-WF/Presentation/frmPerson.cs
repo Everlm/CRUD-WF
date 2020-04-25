@@ -13,9 +13,16 @@ namespace CRUD_WF.Presentation
 {
     public partial class frmPerson : Form
     {
-        public frmPerson()
+        public int? id;
+        Person oPerson = null;
+        public frmPerson(int? id=null)
         {
             InitializeComponent();
+            this.id = id;
+            if (id!=null)
+            {
+                Update();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -24,6 +31,26 @@ namespace CRUD_WF.Presentation
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void Update()
+        {
+            using (DBPersonEntities db = new DBPersonEntities())
+            {
+                oPerson = db.People.Find(id);
+                
+                txtDNI.Text= oPerson.Id.ToString();
+                txtFirstName.Text = oPerson.FirstName;
+                txtLastName.Text = oPerson.LastName;
+                dtpDateOfBirth.Value = oPerson.DateOfBirth;
+                txtAge.Text = oPerson.Age;
+                txtAdress.Text = oPerson.Address;
+                txtCity.Text = oPerson.City;
+            }
+        }
+        private void Save()
         {
             //Create a entity
             Person oPerson = new Person();
@@ -39,8 +66,12 @@ namespace CRUD_WF.Presentation
             //using EF
             using (DBPersonEntities db = new DBPersonEntities())
             {
+                if (id==null) oPerson = new Person();
+
                 //Save in the tPerson
-                db.People.Add(oPerson);
+                if (id ==null) db.People.Add(oPerson);
+                else db.Entry(oPerson).State = System.Data.Entity.EntityState.Modified;
+               
                 db.SaveChanges();
             }
 
