@@ -13,10 +13,10 @@ namespace CRUD_WF.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBPersonEntities1 : DbContext
+    public partial class DBPersonEntities : DbContext
     {
-        public DBPersonEntities1()
-            : base("name=DBPersonEntities1")
+        public DBPersonEntities()
+            : base("name=DBPersonEntities")
         {
         }
     

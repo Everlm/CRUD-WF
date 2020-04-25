@@ -37,15 +37,14 @@ namespace CRUD_WF.Presentation
             oPerson.City = txtCity.Text;
 
             //using EF
-            using (DBPersonEntities1 db = new DBPersonEntities1())
+            using (DBPersonEntities db = new DBPersonEntities())
             {
                 //Save in the tPerson
                 db.People.Add(oPerson);
                 db.SaveChanges();
-
             }
 
-            MessageBox.Show("Save Suscesfull");
+            MessageBox.Show("Save Successfull");
             this.Close();
         }
     }

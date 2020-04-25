@@ -32,7 +32,7 @@ namespace CRUD_WF
         #region HELPER
         public void Refresh()
         {
-            using (DBPersonEntities1 db=new DBPersonEntities1())
+            using (DBPersonEntities db=new DBPersonEntities())
             {
                 //Linq
                 var lst = from d in db.People
