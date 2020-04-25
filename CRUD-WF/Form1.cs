@@ -32,7 +32,7 @@ namespace CRUD_WF
         }
         
         #region HELPER
-        public void Refresh()
+        private void Refresh()
         {
             using (DBPersonEntities db=new DBPersonEntities())
             {
@@ -43,7 +43,7 @@ namespace CRUD_WF
                 dataGridView1.DataSource = lst.ToList();
             }
         }
-
+         
         private int? getId()
         {
             try
@@ -73,6 +73,22 @@ namespace CRUD_WF
             {
                 frmPerson oFrmPErson = new frmPerson(id);
                 oFrmPErson.ShowDialog();
+
+                Refresh();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int? id = getId();
+            if (id != null)
+            {
+                using (DBPersonEntities db = new DBPersonEntities())
+                {
+                    Person oPerson = db.People.Find(id);
+                    db.People.Remove(oPerson);
+                    db.SaveChanges();   
+                }
 
                 Refresh();
             }

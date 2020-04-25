@@ -35,7 +35,7 @@ namespace CRUD_WF.Presentation
             Save();
         }
 
-        private void Update()
+        private new void Update()
         {
             using (DBPersonEntities db = new DBPersonEntities())
             {
@@ -52,20 +52,20 @@ namespace CRUD_WF.Presentation
         }
         private void Save()
         {
-            //Create a entity
-            Person oPerson = new Person();
-            //Acess to data
-            oPerson.Id = int.Parse(this.txtDNI.Text);
-            oPerson.FirstName = txtFirstName.Text;
-            oPerson.LastName = txtLastName.Text;
-            oPerson.DateOfBirth = dtpDateOfBirth.Value;
-            oPerson.Age = txtAge.Text;
-            oPerson.Address = txtAdress.Text;
-            oPerson.City = txtCity.Text;
-
             //using EF
             using (DBPersonEntities db = new DBPersonEntities())
             {
+                //Create a entity
+                Person oPerson = new Person();
+                //Acess to data
+                oPerson.Id = int.Parse(this.txtDNI.Text);
+                oPerson.FirstName = txtFirstName.Text;
+                oPerson.LastName = txtLastName.Text;
+                oPerson.DateOfBirth = dtpDateOfBirth.Value;
+                oPerson.Age = txtAge.Text;
+                oPerson.Address = txtAdress.Text;
+                oPerson.City = txtCity.Text;
+                
                 if (id==null) oPerson = new Person();
 
                 //Save in the tPerson
