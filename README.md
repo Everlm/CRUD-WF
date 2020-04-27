@@ -1,2 +1,2 @@
 # CRUD-WF
-Example of a CRUD using Windows Form
+Example CRUD using Windows Form
