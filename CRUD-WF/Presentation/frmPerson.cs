@@ -45,6 +45,18 @@ namespace CRUD_WF.Presentation
                 txtCity.Text = oPerson.City;
             }
         }
+
+        private void Clean()
+        {
+            txtDNI.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text= string.Empty;
+            txtAge.Text= string.Empty;
+            txtAdress.Text= string.Empty;
+            txtCity.Text = string.Empty;
+            dtpDateOfBirth.Value = DateTime.Today;
+            
+        }
         private void Save()
         {
             //using EF
@@ -66,11 +78,17 @@ namespace CRUD_WF.Presentation
                 else db.Entry(oPerson).State = System.Data.Entity.EntityState.Modified;
                
                 db.SaveChanges();
+                Clean();
                 
             }
 
             MessageBox.Show("Save Successfull");
-            this.Close();
+            
+        }
+
+        private void frmPerson_Activated(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtDNI;
         }
     }
 }

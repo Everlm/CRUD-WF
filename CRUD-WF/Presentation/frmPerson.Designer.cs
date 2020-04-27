@@ -195,6 +195,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmPerson";
+            this.Activated += new System.EventHandler(this.frmPerson_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 
