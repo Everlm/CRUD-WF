@@ -25,17 +25,12 @@ namespace CRUD_WF.Presentation
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Save();
         }
 
-        private new void Update()
+        private void Update()
         {
             using (DBPersonEntities db = new DBPersonEntities())
             {
@@ -56,7 +51,7 @@ namespace CRUD_WF.Presentation
             using (DBPersonEntities db = new DBPersonEntities())
             {
                 //Create a entity
-                Person oPerson = new Person();
+                if (id == null) oPerson = new Person();
                 //Acess to data
                 oPerson.Id = int.Parse(this.txtDNI.Text);
                 oPerson.FirstName = txtFirstName.Text;
@@ -66,13 +61,12 @@ namespace CRUD_WF.Presentation
                 oPerson.Address = txtAdress.Text;
                 oPerson.City = txtCity.Text;
                 
-                if (id==null) oPerson = new Person();
-
                 //Save in the tPerson
                 if (id ==null) db.People.Add(oPerson);
                 else db.Entry(oPerson).State = System.Data.Entity.EntityState.Modified;
                
                 db.SaveChanges();
+                
             }
 
             MessageBox.Show("Save Successfull");

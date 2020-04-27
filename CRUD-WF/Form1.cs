@@ -14,16 +14,11 @@ namespace CRUD_WF
 {
     public partial class Form1 : Form
     {
-   
 
+       
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -34,11 +29,24 @@ namespace CRUD_WF
         #region HELPER
         private void Refresh()
         {
-            using (DBPersonEntities db=new DBPersonEntities())
+            using (DBPersonEntities db = new DBPersonEntities())
             {
                 //Linq
                 var lst = from d in db.People
                           select d;
+
+                //if (!txtConsulta.Text.Trim().Equals(""))
+                //{
+                //    lst = lst.Where(d => d.FirstName.Contains(txtConsulta.Text.Trim()));
+                   
+                //}
+
+                if (!txtConsulta.Text.Trim().Equals(""))
+                {
+                    int id = int.Parse(txtConsulta.Text.Trim());
+                    lst = lst.Where(d => d.Id == id);
+
+                }
 
                 dataGridView1.DataSource = lst.ToList();
             }
@@ -92,6 +100,11 @@ namespace CRUD_WF
 
                 Refresh();
             }
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+           Refresh();
         }
     }
 
